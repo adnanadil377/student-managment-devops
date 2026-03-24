@@ -9,7 +9,7 @@ function App() {
   useEffect(() => {
     const fetchStudent = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/student')
+        const response = await fetch('/api/student')
 
         if (!response.ok) {
           throw new Error('Failed to load student details from backend.')
