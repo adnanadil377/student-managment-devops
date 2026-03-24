@@ -7,7 +7,7 @@ pipeline {
         FRONTEND_IMAGE = "${DOCKER_HUB_USERNAME}/${ROLL_NUMBER}_frontend"
         BACKEND_IMAGE = "${DOCKER_HUB_USERNAME}/${ROLL_NUMBER}_backend"
         DOCKER_HUB_REGISTRY = 'https://registry.hub.docker.com'
-        DOCKER_CREDENTIALS_ID = 'dockerhub-credentials'
+        DOCKER_CREDENTIALS_ID = 'dockerhub-token'
         GIT_COMMIT_TAG = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
     }
 
