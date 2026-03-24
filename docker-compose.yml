@@ -1,26 +1,19 @@
-version: '3.8'
-
 services:
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: adnan23bcs35/2023bcs0035_backend:latest
     container_name: student-backend
     ports:
       - "8000:8000"
     environment:
       - PYTHONDONTWRITEBYTECODE=1
       - PYTHONUNBUFFERED=1
-    volumes:
-      - ./backend:/app
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-http://localhost:5173,http://127.0.0.1:5173,http://localhost,http://127.0.0.1}
     networks:
       - student-network
+    restart: unless-stopped
 
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    image: adnan23bcs35/2023bcs0035_frontend:latest
     container_name: student-frontend
     ports:
       - "80:80"
@@ -28,6 +21,7 @@ services:
       - backend
     networks:
       - student-network
+    restart: unless-stopped
 
 networks:
   student-network:
